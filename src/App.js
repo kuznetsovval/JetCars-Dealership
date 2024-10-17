@@ -4,7 +4,7 @@ import './style/App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Це моя нова сторінка!</h1>
+      <h1>Це моя нова сторінка! :)</h1>
     </div>
   );
 }
