@@ -1,0 +1,44 @@
+.MainPage {
+    background-color: white;
+    background-image: url("../assets/background-image2.png");
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+}
+
+.CentralMainPageCont {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 80%;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.CentralMainPageCont::-webkit-scrollbar {
+    display: none;
+}
+
+.CentralMainPageCont {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.CentralSubCont {
+    display: flex;
+    width: 85%;
+    height: 100%;
+}
+
+.LeftCont {
+    width: 50%;
+    height: 100%;
+}
+
+.RightCont {
+    width: 50%;
+    height: 100%;
+}

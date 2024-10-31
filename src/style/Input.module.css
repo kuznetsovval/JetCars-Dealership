@@ -1,0 +1,13 @@
+.InputCont {
+  margin-top: 15px;
+}
+
+.InputId {
+  background: #f3f4f6ff;
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  height: 40px;
+  padding-left: 15px;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+}
