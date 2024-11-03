@@ -1,125 +1,145 @@
-import styles from "./style/MainPage.module.css";
-import React, { useState } from "react";
-import Header from "./components/Header";
-import logo from "./assets/logo.png";
-import { useNavigate } from "react-router-dom";
-import MenuBar from "./components/MenuBar";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
+import { db } from "./firebase";
 import AutoCard2 from "./components/AutoCard2";
+import MenuBar from "./components/MenuBar";
+import styles from "./style/MainPage.module.css";
+import Header from "./components/Header";
+import { motion } from "framer-motion";
+import logo from "./assets/logo.png";
 import like from "./assets/heart-ico.svg";
-import prewiew1 from "./assets/prewiew1.jpg";
-import prewiew2 from "./assets/prewiew2.jpg";
-import prewiew3 from "./assets/prewiew3.jpg";
-import prewiew4 from "./assets/prewiew4.jpg";
-import prewiew5 from "./assets/prewiew5.jpg";
-import prewiew6 from "./assets/prewiew6.jpg";
-import prewiew7 from "./assets/prewiew7.jpg";
-import prewiew8 from "./assets/prewiew8.jpg";
-
-const carData = [
-    {
-        href: prewiew1,
-        title: "BMW M5 E60",
-        description: "Продається BMW M5 E60 '07 у відмінному стані з спортивним вихлопом, кованими дисками та мінімальними слідами використання.",
-        price: "$30.000",
-        src: like,
-    },
-    {
-        href: prewiew2,
-        title: "BMW M5 E60",
-        description: "Продається BMW M5 E60 '07 у відмінному стані з спортивним вихлопом, кованими дисками та мінімальними слідами використання.",
-        price: "$30.000",
-        src: like,
-    },
-    {
-        href: prewiew3,
-        title: "BMW M5 E60",
-        description: "Продається BMW M5 E60 '07 у відмінному стані з спортивним вихлопом, кованими дисками та мінімальними слідами використання.",
-        price: "$30.000",
-        src: like,
-    },
-    {
-        href: prewiew4,
-        title: "BMW M5 E60",
-        description: "Продається BMW M5 E60 '07 у відмінному стані з спортивним вихлопом, кованими дисками та мінімальними слідами використання.",
-        price: "$30.000",
-        src: like,
-    },
-    {
-        href: prewiew5,
-        title: "BMW M5 E60",
-        description: "Продається BMW M5 E60 '07 у відмінному стані з спортивним вихлопом, кованими дисками та мінімальними слідами використання.",
-        price: "$30.000",
-        src: like,
-    },
-    {
-        href: prewiew6,
-        title: "BMW M5 E60",
-        description: "Продається BMW M5 E60 '07 у відмінному стані з спортивним вихлопом, кованими дисками та мінімальними слідами використання.",
-        price: "$30.000",
-        src: like,
-    },
-    {
-        href: prewiew7,
-        title: "BMW M5 E60",
-        description: "Продається BMW M5 E60 '07 у відмінному стані з спортивним вихлопом, кованими дисками та мінімальними слідами використання.",
-        price: "$30.000",
-        src: like,
-    },
-    {
-        href: prewiew8,
-        title: "BMW M5 E60",
-        description: "Продається BMW M5 E60 '07 у відмінному стані з спортивним вихлопом, кованими дисками та мінімальними слідами використання.",
-        price: "$30.000",
-        src: like,
-    },
-];
+import { useAuth } from "./UserLogin";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
-    const navigate = useNavigate();
-    const handleBackClick = () => {
-        navigate(-1);
+  const [carData, setCarData] = useState([]);
+  const [isActive, setIsActive] = useState(false);
+  const [filteredData, setFilteredData] = useState([]);
+
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const toggle = () => {
+    setIsActive(!isActive);
+  };
+
+  const handleFilter = (type) => {
+    let sortedData;
+    if (type === "expensive") {
+      sortedData = [...carData].sort(
+        (a, b) =>
+          parseInt(b.price.replace(/[^0-9]/g, "")) -
+          parseInt(a.price.replace(/[^0-9]/g, "")),
+      );
+    } else if (type === "cheap") {
+      sortedData = [...carData].sort(
+        (a, b) =>
+          parseInt(a.price.replace(/[^0-9]/g, "")) -
+          parseInt(b.price.replace(/[^0-9]/g, "")),
+      );
+    }
+    setFilteredData(sortedData);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const querySnapshot = await getDocs(collection(db, "cars"));
+      const carsArray = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setCarData(carsArray);
+      setFilteredData(carsArray);
     };
 
-    const [isActive, setIsActive] = useState(false);
+    fetchData();
+  }, []);
 
-    const toggle = () => {
-        setIsActive(!isActive);
-    };
+  const addToWishlist = async (product) => {
+    if (!user) {
+      alert("You are not logged in");
+      return;
+    }
 
-    const midIndex = Math.ceil(carData.length / 2);
-    const leftCars = carData.slice(0, midIndex);
-    const rightCars = carData.slice(midIndex);
+    try {
+      const carRef = doc(db, "cars_wishlist", user.uid);
+      const carSnapshot = await getDoc(carRef);
 
-    return (
-        <div className={styles.MainPage}>
-            {isActive && (
-                <motion.div
-                    key="slide"
-                    initial={{ marginLeft: "100%" }}
-                    animate={{ marginLeft: isActive ? "0%" : "100%" }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                >
-                    <MenuBar name={"Galaxy2801"} email={"kuznetsov@gmail.com"} />
-                </motion.div>
-            )}
-            <Header toggle={toggle} src={logo} text={"Меню"} filterText={"Фільтрування по ціні"} width={"80%"} isActive={isActive} />
-            <div className={styles.CentralMainPageCont}>
-                <div className={styles.CentralSubCont}>
-                    <div className={styles.LeftCont}>
-                        {leftCars.map((car, index) => (
-                            <AutoCard2 key={index} {...car} />
-                        ))}
-                    </div>
-                    <div className={styles.RightCont}>
-                        {rightCars.map((car, index) => (
-                            <AutoCard2 key={index} {...car} />
-                        ))}
-                    </div>
-                </div>
-            </div>
+      let carData = carSnapshot.exists() ? carSnapshot.data().items : [];
+
+      const isAlreadyInWishlist = carData.some((car) => car.id === product.id);
+
+      if (!isAlreadyInWishlist) {
+        const productWithId = { ...product, id: product.id };
+        carData.push(productWithId);
+
+        await setDoc(carRef, { items: carData });
+        console.log("Product added to wishlist.");
+      } else {
+        console.log("Product already exists in the wishlist.");
+      }
+    } catch (error) {
+      console.error("Error adding to wishlist: ", error);
+    }
+  };
+
+  const handleCarClick = (carId) => {
+    navigate(`/market/lot/${carId}`);
+  };
+
+  const midIndex = Math.ceil(filteredData.length / 2);
+  const leftCars = filteredData.slice(0, midIndex);
+  const rightCars = filteredData.slice(midIndex);
+
+  return (
+    <div className={styles.MainPage}>
+      {isActive && (
+        <motion.div
+          key="slide"
+          initial={{ marginLeft: "100%" }}
+          animate={{ marginLeft: "0%" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          <MenuBar />
+        </motion.div>
+      )}
+      <Header
+        toggle={toggle}
+        src={logo}
+        text={"Меню"}
+        filterText={"Фільтрування по ціні"}
+        width={"80%"}
+        isActive={isActive}
+        onFilter={handleFilter}
+      />
+      <div className={styles.CentralMainPageCont}>
+        <div className={styles.CentralSubCont}>
+          <div className={styles.LeftCont}>
+            {leftCars.map((car) => (
+              <AutoCard2
+                key={car.id}
+                {...car}
+                onClick={() => handleCarClick(car.id)}
+                src={like}
+                addToWishlist={() => addToWishlist(car)}
+              />
+            ))}
+          </div>
+          <div className={styles.RightCont}>
+            {rightCars.map((car) => (
+              <AutoCard2
+                key={car.id}
+                {...car}
+                onClick={() => handleCarClick(car.id)}
+                src={like}
+                addToWishlist={() => addToWishlist(car)}
+              />
+            ))}
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default MainPage;

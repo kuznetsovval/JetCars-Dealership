@@ -1,5 +1,9 @@
 .InputCont {
+  position: relative;
+  display: flex;
   margin-top: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
 .InputId {
@@ -10,4 +14,13 @@
   height: 40px;
   padding-left: 15px;
   font-family: "Fira Sans Extra Condensed", sans-serif;
+}
+
+.EyeIcon {
+  position: absolute;
+  right: 35px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  opacity: 0.3;
 }

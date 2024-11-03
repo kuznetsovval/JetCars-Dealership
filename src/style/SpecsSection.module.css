@@ -1,0 +1,96 @@
+.SpecsCont {
+  height: 85%;
+  width: 100%;
+  padding-left: 20px;
+  padding-top: 15px;
+}
+
+.EngineCont {
+  height: 33.33%;
+  width: 100%;
+}
+
+.EngineText {
+  font-family: "Unbounded", sans-serif;
+  font-size: 15px;
+  line-height: 28px;
+  font-weight: 550;
+}
+
+.TypeCont {
+  width: 100%;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  color: #9095a1ff;
+}
+
+.CapacityCont {
+  width: 100%;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  color: #9095a1ff;
+}
+
+.PowerCont {
+  width: 100%;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  color: #9095a1ff;
+}
+
+.TorqueCont {
+  width: 100%;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  color: #9095a1ff;
+}
+
+.PerformanceCont {
+  height: 28%;
+  width: 100%;
+}
+
+.PerformanceText {
+  font-family: "Unbounded", sans-serif;
+  font-size: 15px;
+  line-height: 28px;
+  font-weight: 550;
+}
+
+.FuelCont {
+  width: 100%;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  color: #9095a1ff;
+}
+
+.AccelerationCont {
+  width: 100%;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  color: #9095a1ff;
+}
+
+.SpeedCont {
+  width: 100%;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  color: #9095a1ff;
+}
+
+.WeightsColorCont {
+  height: 33.33%;
+  width: 100%;
+}
+
+.WeightsColorText {
+  font-family: "Unbounded", sans-serif;
+  font-size: 15px;
+  line-height: 28px;
+  font-weight: 550;
+}
+
+.WeightCont {
+  width: 100%;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  color: #9095a1ff;
+}
+
+.ColorCont {
+  width: 100%;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  color: #9095a1ff;
+}

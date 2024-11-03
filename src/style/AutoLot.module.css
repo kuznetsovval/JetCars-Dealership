@@ -1,290 +1,145 @@
 .AutoLot {
-    background-color: white;
-    background-image: url("../assets/background-image2.png");
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
-    justify-content: center;
+  background-color: white;
+  background-image: url("../assets/background-image2.png");
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
 }
 
 .CentralAutoLotCont {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80%;
 }
 
 .AutoLotSubCont {
-    display: flex;
-    width: 70%;
-    height: 90%;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0px 0px 15px rgba(23, 26, 31, 0.59);
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  width: 70%;
+  height: 90%;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0px 0px 15px rgba(23, 26, 31, 0.59);
+  justify-content: center;
+  align-items: center;
 }
 
 .AutoLot_Inside {
-    display: flex;
-    height: 85%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  height: 85%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .LeftColumn {
-    width: 50%;
-    height: 100%;
-}
-
-.LabelCont {
-    height: 15%;
-    width: 100%;
-    padding-top: 20px;
-    padding-left: 20px;
-}
-
-.MainCont {
-    display: flex;
-    width: 94%;
-}
-
-.LabelText {
-    font-family: "Unbounded", sans-serif;
-    width: 85%;
-    font-size: 25px;
-    line-height: 28px;
-    font-weight: 550;
-}
-
-.PurchaseCont {
-    display: flex;
-    width: 5%;
-    justify-content: end;
-    align-items: center;
-}
-
-.Purchase {
-    width: 20px;
-    height: 20px;
-}
-
-.WishlistCont {
-    display: flex;
-    width: 8%;
-    justify-content: end;
-    align-items: center;
-}
-
-.Like {
-    width: 20px;
-    height: 20px;
-}
-
-.RatingCont {
-
+  width: 50%;
+  height: 100%;
 }
 
 .HorizontalStick {
-    background-color: #d3d3d3;
-    width: 100%;
-    height: 1px;
-}
-
-.SpecsCont {
-    height: 85%;
-    width: 100%;
-    padding-left: 20px;
-    padding-top: 15px;
-}
-
-.EngineCont {
-    height: 33.33%;
-    width: 100%;
-}
-
-.EngineText {
-    font-family: "Unbounded", sans-serif;
-    font-size: 15px;
-    line-height: 28px;
-    font-weight: 550;
-}
-
-.TypeCont {
-    width: 100%;
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    color: #9095A1FF;
-}
-
-.CapacityCont {
-    width: 100%;
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    color: #9095A1FF;
-}
-
-.PowerCont {
-    width: 100%;
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    color: #9095A1FF;
-}
-
-.TorqueCont {
-    width: 100%;
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    color: #9095A1FF;
-}
-
-.PerformanceCont {
-    height: 28%;
-    width: 100%;
-}
-
-.PerformanceText {
-    font-family: "Unbounded", sans-serif;
-    font-size: 15px;
-    line-height: 28px;
-    font-weight: 550;
-}
-
-.FuelCont {
-    width: 100%;
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    color: #9095A1FF;
-}
-
-.AccelerationCont {
-    width: 100%;
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    color: #9095A1FF;
-}
-
-.SpeedCont {
-    width: 100%;
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    color: #9095A1FF;
-}
-
-.WeightsColorCont {
-    height: 33.33%;
-    width: 100%;
-}
-
-.WeightsColorText {
-    font-family: "Unbounded", sans-serif;
-    font-size: 15px;
-    line-height: 28px;
-    font-weight: 550;
-}
-
-.WeightCont {
-    width: 100%;
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    color: #9095A1FF;
-}
-
-.ColorCont {
-    width: 100%;
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    color: #9095A1FF;
+  background-color: #d3d3d3;
+  width: 100%;
+  height: 1px;
 }
 
 .VertycalStick {
-    background-color: #d3d3d3;
-    width: 1px;
-    height: 100%;
+  background-color: #d3d3d3;
+  width: 1px;
+  height: 100%;
 }
 
 .RightColumn {
-    width: 50%;
-    height: 100%;
+  width: 50%;
+  height: 100%;
 }
 
 .ImageCont {
-    display: flex;
-    width: 100%;
-    height: 55%;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  width: 100%;
+  height: 55%;
+  justify-content: center;
+  align-items: center;
 }
 
 .AutoPhoto {
-    height: 80%;
-    width: 80%;
-    object-fit: cover;
-    border-radius: 8px;
+  height: 80%;
+  width: 80%;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .InfoCont {
-    display: flex;
-    width: 100%;
-    height: 15%;
+  display: flex;
+  width: 100%;
+  height: 15%;
 }
 
 .PriceCont {
-    display: flex;
-    width: 33.33%;
-    justify-content: end;
-    align-items: center;
-    font-family: "Unbounded", sans-serif;
-    font-size: 21px;
-    color: #897434ff;
+  display: flex;
+  width: 33.33%;
+  justify-content: end;
+  align-items: center;
+  font-family: "Unbounded", sans-serif;
+  font-size: 21px;
+  color: #897434ff;
 }
 
 .OdometerCont {
-    display: flex;
-    width: 33.33%;
-    justify-content: center;
-    align-items: center;
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    color: #9095A1FF;
+  display: flex;
+  width: 33.33%;
+  justify-content: center;
+  align-items: center;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  color: #9095a1ff;
 }
 
 .GeoCont {
-    display: flex;
-    width: 33.33%;
-    justify-content: start;
-    align-items: center;
+  display: flex;
+  width: 33.33%;
+  justify-content: start;
+  align-items: center;
 }
 
 .CommentCont {
-    width: 100%;
-    height: 30%;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 30%;
+  justify-content: center;
+  align-items: center;
 }
 
 .CommentSubCont {
-    display: flex;
-    width: 100%;
-    height: 50%;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  width: 100%;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
 }
 
 .Comment {
-    display: flex;
-    border: none;
-    border-radius: 5px;
-    width: 80%;
-    height: 75%;
-    padding-left: 15px;
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    background-color: #F3F4F6FF;
+  display: flex;
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  height: 75%;
+  padding-left: 15px;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  background-color: #f3f4f6ff;
 }
 
 .ButtonSubCont {
-    display: flex;
-    height: 50%;
-    width: 93%;
-    justify-content: end;
-    align-items: start;
+  display: flex;
+  height: 50%;
+  width: 93%;
+  justify-content: end;
+  align-items: start;
 }
 
 .RightSubCont {
-    display: flex;
-    width: 5%;
-    padding-top: 15px;
-    padding-right: 15px;
+  display: flex;
+  width: 5%;
+  padding-top: 15px;
+  padding-right: 15px;
 }
