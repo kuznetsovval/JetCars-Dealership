@@ -1,0 +1,51 @@
+.NavigateBarCont {
+  display: flex;
+  justify-content: center;
+}
+
+.PreviousCont {
+  display: flex;
+  align-items: center;
+  padding-right: 5px;
+}
+
+.PreviousArrow {
+  transform: rotate(180deg);
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.PreviousArrow:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.CountCont {
+  display: flex;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  align-items: center;
+}
+
+.NextCont {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.NextArrow {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.NextArrow:hover {
+  opacity: 1;
+  cursor: pointer;
+}

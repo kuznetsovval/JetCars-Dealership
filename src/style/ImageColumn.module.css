@@ -1,0 +1,9 @@
+.RightColumn {
+  display: flex;
+  align-items: center;
+}
+
+.mainImage {
+  height: auto;
+  max-width: 100%;
+}

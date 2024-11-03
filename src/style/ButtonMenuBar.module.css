@@ -1,0 +1,49 @@
+.Cont {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 8%;
+}
+
+.SubCont {
+  width: 100%;
+  margin-left: 10px;
+}
+
+.MenuBarButton {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  padding-left: 20px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.MenuBarButton:hover {
+  opacity: 1;
+}
+
+.ButtonImg {
+  width: 20%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 16px;
+}
+
+.Icon {
+  width: 32px;
+  height: 32px;
+}
+
+.ButtonText {
+  display: flex;
+  width: 80%;
+  padding-left: 10px;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  justify-content: start;
+  font-size: 17px;
+  color: black;
+}

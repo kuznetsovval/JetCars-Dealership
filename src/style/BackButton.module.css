@@ -1,0 +1,25 @@
+.ArrowCont {
+  display: flex;
+  flex-direction: column;
+  width: 5%;
+  height: 100%;
+  padding-top: 15px;
+  padding-left: 15px;
+  align-items: start;
+}
+
+.Arrow {
+  width: 34px;
+  height: 34px;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.Arrow:hover {
+  opacity: 1;
+  cursor: pointer;
+}
