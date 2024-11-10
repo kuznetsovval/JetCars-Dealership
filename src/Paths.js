@@ -6,13 +6,13 @@ import {
   Navigate,
 } from "react-router-dom";
 import { auth } from "./firebase";
-import App from "./App";
+import Authorization from "./Authorization";
 import Registration from "./Registration";
 import Wishlist from "./Wishlist";
 import MainPage from "./MainPage";
 import AutoLot from "./AutoLot";
 
-const Main = () => {
+const Paths = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Main = () => {
   return (
     <Router>
       <Routes>
-        <Route path={"/"} element={<App />} />
+        <Route path={"/"} element={<Authorization />} />
         <Route path={"/registration"} element={<Registration />} />
         <Route
           path={"/wishlist"}
@@ -52,4 +52,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Paths;

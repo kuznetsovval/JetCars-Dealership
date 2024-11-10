@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./style/index.css";
-import Main from "./Main";
+import Paths from "./Paths";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Main />
+    <Paths />
   </React.StrictMode>,
 );
 

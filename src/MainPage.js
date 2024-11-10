@@ -119,7 +119,7 @@ const MainPage = () => {
               <AutoCard2
                 key={car.id}
                 {...car}
-                userId={user ? user.uid : null} // Передаємо userId
+                userId={user ? user.uid : null}
                 onClick={() => handleCarClick(car.id)}
                 src={like}
                 addToWishlist={() => addToWishlist(car)}
@@ -131,7 +131,7 @@ const MainPage = () => {
               <AutoCard2
                 key={car.id}
                 {...car}
-                userId={user ? user.uid : null} // Передаємо userId
+                userId={user ? user.uid : null}
                 onClick={() => handleCarClick(car.id)}
                 src={like}
                 addToWishlist={() => addToWishlist(car)}

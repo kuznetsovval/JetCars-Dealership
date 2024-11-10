@@ -10,7 +10,7 @@ import ImageColumn from "./components/ImageColumn";
 import LabelText from "./components/LabelText";
 import { loginUser } from "./UserLogin";
 
-const App = () => {
+const Authorization = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -74,4 +74,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Authorization;
