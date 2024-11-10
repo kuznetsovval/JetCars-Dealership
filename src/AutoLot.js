@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import Button from "./components/Button";
 import SpecsSection from "./components/SpecsSection";
 import AutoDetails from "./components/AutoDetails";
-import { doc, setDoc, getDoc, deleteDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, deleteDoc, arrayUnion } from "firebase/firestore";
 import { db } from "./firebase";
 import shop from "./assets/shoppingcart-ico.svg";
 import like from "./assets/heart-ico.svg";
@@ -22,6 +22,7 @@ const AutoLot = () => {
   const { id } = useParams();
   const [car, setCar] = useState(null);
   const [isActive, setIsActive] = useState(false);
+  const [comment, setComment] = useState("");
 
   const toggle = () => setIsActive(!isActive);
   const handleBackClick = () => navigate(-1);
@@ -49,7 +50,7 @@ const AutoLot = () => {
 
   const addToWishlist = async () => {
     if (!user) {
-      console.log("You don`t enter account");
+      console.log("You don’t enter account");
       return;
     }
 
@@ -77,7 +78,7 @@ const AutoLot = () => {
       await setDoc(carRef, { items: carData });
       console.log("Product added into wishlist!");
     } catch (error) {
-      console.error("Error product doesn`t add to wishlist: ", error);
+      console.error("Error product doesn’t add to wishlist: ", error);
     }
   };
 
@@ -96,8 +97,40 @@ const AutoLot = () => {
     }
   };
 
+  const handleCommentChange = (e) => setComment(e.target.value);
+
+  const addComment = async () => {
+    if (!user) {
+      console.log("Please log in to comment.");
+      return;
+    }
+
+    if (!comment.trim()) {
+      console.log("Comment cannot be empty.");
+      return;
+    }
+
+    try {
+      const commentRef = doc(db, "comments", id);
+      await setDoc(
+        commentRef,
+        {
+          [user.uid]: arrayUnion({
+            text: comment,
+            timestamp: new Date(),
+          }),
+        },
+        { merge: true },
+      );
+      console.log("Comment added!");
+      setComment("");
+    } catch (error) {
+      console.error("Error adding comment: ", error);
+    }
+  };
+
   if (!car) {
-    return <div>Завантаження...</div>;
+    return <div className={styles.Spinner}></div>;
   }
 
   return (
@@ -174,10 +207,12 @@ const AutoLot = () => {
                     className={styles.Comment}
                     type="text"
                     placeholder="Введіть коментар"
+                    value={comment}
+                    onChange={handleCommentChange}
                   />
                 </div>
                 <div className={styles.ButtonSubCont}>
-                  <Button title="Відправити" />
+                  <Button title="Відправити" functions={addComment} />
                 </div>
               </div>
             </div>

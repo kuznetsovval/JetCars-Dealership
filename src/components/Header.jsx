@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
@@ -12,12 +11,7 @@ const Header = (props) => {
   };
 
   const handleMenuClick = () => {
-    setIsLoading(true);
     props.toggle();
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
   };
 
   useEffect(() => {
@@ -46,12 +40,14 @@ const Header = (props) => {
           className={`${styles.MenuText} ${props.isActive ? styles.active : ""}`}
           onClick={handleMenuClick}
         >
-          {isLoading ? <span className={styles.loader}></span> : props.text}
+          {props.text}
         </a>
       </div>
       <div className={styles.RegisterTextCont}>
-        <div className={styles.FilterText} onClick={toggleDropdown}>
-          <a className={styles.filterLink}>{props.filterText}</a>
+        <div className={styles.FilterText}>
+          <a className={styles.filterLink} onClick={toggleDropdown}>
+            {props.filterText}
+          </a>
         </div>
         {showDropdown && (
           <div className={styles.dropdown} ref={dropdownRef}>
