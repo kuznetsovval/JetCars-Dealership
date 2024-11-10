@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import Button from "./components/Button";
 import SpecsSection from "./components/SpecsSection";
 import AutoDetails from "./components/AutoDetails";
-import { doc, setDoc, getDoc, deleteDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, deleteDoc, arrayUnion } from "firebase/firestore";
 import { db } from "./firebase";
 import shop from "./assets/shoppingcart-ico.svg";
 import like from "./assets/heart-ico.svg";
@@ -22,6 +22,7 @@ const AutoLot = () => {
   const { id } = useParams();
   const [car, setCar] = useState(null);
   const [isActive, setIsActive] = useState(false);
+  const [comment, setComment] = useState(""); // State for comment input
 
   const toggle = () => setIsActive(!isActive);
   const handleBackClick = () => navigate(-1);
@@ -49,7 +50,7 @@ const AutoLot = () => {
 
   const addToWishlist = async () => {
     if (!user) {
-      console.log("You don`t enter account");
+      console.log("You don’t enter account");
       return;
     }
 
@@ -77,7 +78,7 @@ const AutoLot = () => {
       await setDoc(carRef, { items: carData });
       console.log("Product added into wishlist!");
     } catch (error) {
-      console.error("Error product doesn`t add to wishlist: ", error);
+      console.error("Error product doesn’t add to wishlist: ", error);
     }
   };
 
@@ -96,96 +97,132 @@ const AutoLot = () => {
     }
   };
 
+  const handleCommentChange = (e) => setComment(e.target.value);
+
+  const addComment = async () => {
+    if (!user) {
+      console.log("Please log in to comment.");
+      return;
+    }
+
+    if (!comment.trim()) {
+      console.log("Comment cannot be empty.");
+      return;
+    }
+
+    try {
+      const commentRef = doc(db, "comments", id); // Document path by AutoLot ID
+      // Використовуємо setDoc з merge: true, щоб додати новий коментар або створити документ
+      await setDoc(
+          commentRef,
+          {
+            [user.uid]: arrayUnion({
+              text: comment,
+              timestamp: new Date(),
+            }),
+          },
+          { merge: true }
+      );
+      console.log("Comment added!");
+      setComment(""); // Clear the input after submission
+    } catch (error) {
+      console.error("Error adding comment: ", error);
+    }
+  };
+
+
   if (!car) {
     return <div>Завантаження...</div>;
   }
 
   return (
-    <div className={styles.AutoLot}>
-      {isActive && (
-        <motion.div
-          key="slide"
-          initial={{ marginLeft: "100%" }}
-          animate={{ marginLeft: "0%" }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        >
-          <MenuBar />
-        </motion.div>
-      )}
-      <Header
-        toggle={toggle}
-        src={logo}
-        text={"Меню"}
-        width={"80%"}
-        isActive={isActive}
-      />
-      <div className={styles.CentralAutoLotCont}>
-        <div className={styles.AutoLotSubCont}>
-          <BackButton src={arrow} onClick={handleBackClick} />
-          <div className={styles.AutoLot_Inside}>
-            <div className={styles.LeftColumn}>
-              <AutoDetails
-                carName={car.name}
-                shopIcon={shop}
-                addToWishlist={addToWishlist}
-                handlePurchase={handlePurchase}
-                likeIcon={like}
-              />
-              <div className={styles.HorizontalStick}></div>
-              <SpecsSection
-                engine={{
-                  type: car.type,
-                  capacity: car.capacity,
-                  power: car.power,
-                  torque: car.torque,
-                }}
-                performance={{
-                  fuelConsumption: car.fuelConsumption,
-                  acceleration: car.acceleration,
-                  maxSpeed: car.maxSpeed,
-                }}
-                weightsColor={{
-                  weight: car.weight,
-                  color: car.color,
-                }}
-              />
-            </div>
-            <div className={styles.VertycalStick}></div>
-            <div className={styles.RightColumn}>
-              <div className={styles.ImageCont}>
-                <img
-                  src={car.image}
-                  className={styles.AutoPhoto}
-                  alt={car.name}
+      <div className={styles.AutoLot}>
+        {isActive && (
+            <motion.div
+                key="slide"
+                initial={{ marginLeft: "100%" }}
+                animate={{ marginLeft: "0%" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <MenuBar />
+            </motion.div>
+        )}
+        <Header
+            toggle={toggle}
+            src={logo}
+            text={"Меню"}
+            width={"80%"}
+            isActive={isActive}
+        />
+        <div className={styles.CentralAutoLotCont}>
+          <div className={styles.AutoLotSubCont}>
+            <BackButton src={arrow} onClick={handleBackClick} />
+            <div className={styles.AutoLot_Inside}>
+              <div className={styles.LeftColumn}>
+                <AutoDetails
+                    carName={car.name}
+                    shopIcon={shop}
+                    addToWishlist={addToWishlist}
+                    handlePurchase={handlePurchase}
+                    likeIcon={like}
+                />
+                <div className={styles.HorizontalStick}></div>
+                <SpecsSection
+                    engine={{
+                      type: car.type,
+                      capacity: car.capacity,
+                      power: car.power,
+                      torque: car.torque,
+                    }}
+                    performance={{
+                      fuelConsumption: car.fuelConsumption,
+                      acceleration: car.acceleration,
+                      maxSpeed: car.maxSpeed,
+                    }}
+                    weightsColor={{
+                      weight: car.weight,
+                      color: car.color,
+                    }}
                 />
               </div>
-              <div className={styles.InfoCont}>
-                <div className={styles.PriceCont}>{car.price}</div>
-                <div className={styles.OdometerCont}>
-                  {car.mileage || "Немає інфо"}
-                </div>
-                <div className={styles.GeoCont}>
-                  {car.location || "Немає інфо"}
-                </div>
-              </div>
-              <div className={styles.CommentCont}>
-                <div className={styles.CommentSubCont}>
-                  <input
-                    className={styles.Comment}
-                    type="text"
-                    placeholder="Введіть коментар"
+              <div className={styles.VertycalStick}></div>
+              <div className={styles.RightColumn}>
+                <div className={styles.ImageCont}>
+                  <img
+                      src={car.image}
+                      className={styles.AutoPhoto}
+                      alt={car.name}
                   />
                 </div>
-                <div className={styles.ButtonSubCont}>
-                  <Button title="Відправити" />
+                <div className={styles.InfoCont}>
+                  <div className={styles.PriceCont}>{car.price}</div>
+                  <div className={styles.OdometerCont}>
+                    {car.mileage || "Немає інфо"}
+                  </div>
+                  <div className={styles.GeoCont}>
+                    {car.location || "Немає інфо"}
+                  </div>
+                </div>
+                <div className={styles.CommentCont}>
+                  <div className={styles.CommentSubCont}>
+                    <input
+                        className={styles.Comment}
+                        type="text"
+                        placeholder="Введіть коментар"
+                        value={comment} // Bind to comment state
+                        onChange={handleCommentChange} // Update comment on input change
+                    />
+                  </div>
+                  <div className={styles.ButtonSubCont}>
+                    <Button title="Відправити" functions={addComment} /> {/* Trigger addComment */}
+                  </div>
                 </div>
               </div>
             </div>
+            <div className={styles.RightSubCont}></div>
           </div>
-          <div className={styles.RightSubCont}></div>
         </div>
       </div>
-    </div>
   );
 };
 
